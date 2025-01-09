@@ -1,7 +1,8 @@
-"use client"
+// "use client"
 import React from 'react';
-import { RecoilRoot } from 'recoil';
+
 import { Providers } from './providers';
+
 
 export default function RootLayout({
   children,
