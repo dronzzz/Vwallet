@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json())
 
 app.post("/hdfcWebhook", async (req, res) => {
-    //TODO: Add zod validation here?
-    //TODO: HDFC bank should ideally send us a secret so we know this is sent by them
+    //TODO: Add zod validation here
+    //TODO:  secret so we know this is sent by them
     const paymentInformation: {
         token: string;
         userId: string;
@@ -19,18 +19,18 @@ app.post("/hdfcWebhook", async (req, res) => {
 
     try {
         await prisma.$transaction([
-            prisma.balance.updateMany({
+            prisma.balance.update({
                 where: {
                     userId: Number(paymentInformation.userId)
                 },
                 data: {
                     amount: {
-                        // You can also get this from your DB
+                        
                         increment: Number(paymentInformation.amount)
                     }
                 }
             }),
-            prisma.onRampTransaction.updateMany({
+            prisma.onRampTransaction.update({
                 where: {
                     token: paymentInformation.token
                 }, 
