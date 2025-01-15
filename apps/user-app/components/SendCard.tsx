@@ -8,6 +8,10 @@ import {p2ptransfer} from "../app/lib/actions/p2pTransfer";
 import { TextInput } from "@repo/ui/textInput";
 
 
+
+
+
+
 export function SendCard() {
     const [number, setNumber] = useState("");
     const [amount, setAmount] = useState("");
